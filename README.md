@@ -15,4 +15,4 @@ basimbot:
     - USER_AGENT=Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.5) Gecko/20091112 Firefox/3.5.5
 ```
 ## Скриншоты
- ![screenshot.png](screenshot.png)
+ ![screenshot](https://i.imgur.com/pJLRbDg.png)
