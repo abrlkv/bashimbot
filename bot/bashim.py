@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 class Bashim:
 
     def __init__(self):
-        self.bashim_url = 'https://bash.im'
+        self.bashim_url = 'https://xn--80abh7bk0c.xn--p1ai'
         self.user_agent = os.environ.get("USER_AGENT")
         self.markdown_sanitize = ['*', '_', '`', '[']
 
@@ -23,7 +23,7 @@ class Bashim:
                 req = req.read().decode('utf-8', 'ignore')
                 return self._get_quote_data(req)
         except Exception:
-            return 'error'
+            return '404'
 
     def _get_quote_data(self, html):
         quotes = BeautifulSoup(html, 'html.parser')
