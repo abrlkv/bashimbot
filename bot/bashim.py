@@ -29,38 +29,38 @@ class Bashim:
         quote_id = quote.find('a', attrs={'class': 'quote__header_permalink'})
         if quote_id is not None:
             quote_id = quote_id.get('href').replace('/quote/', '')
-
-            # Получаем текст цитаты
-            quote_text = quote.find('div', attrs={'class': 'quote__body'})
-            if quote_text is not None:
-                quote_text = quote_text.get_text('\n', strip=True)
-                # Экранируем символы markdown
-                for char in self.markdown_sanitize:
-                    quote_text = quote_text.replace(char, '\\' + char)
-
-            # Получаем дату публикации.
-            quote_date = quote.find(
-                'div', attrs={'class': 'quote__header_date'})
-            if quote_date is not None:
-                quote_date = quote_date.get_text(strip=True)
-
-            # Получаем рейтинг цитаты.
-            quote_raiting = quote.find('div', attrs={'class': 'quote__total'})
-            if quote_raiting is not None:
-                quote_raiting = quote_raiting.get_text(strip=True)
-
-            # Получаем комикс, если он есть.
-            quote_img = None
-            quote_img_el = quote.find(
-                'img', attrs={'class': 'quote__strips_img'})
-            if quote_img_el is not None:
-                quote_text = quote_text.replace(
-                    '\nКомикс по мотивам цитаты', '')
-                quote_img = self.bashim_url + \
-                    quote_img_el['src'].replace('ts/', '')
-
-            # Возвращаем цитату со всей инфой.
             if quote_id:
+                # Получаем текст цитаты
+                quote_text = quote.find('div', attrs={'class': 'quote__body'})
+                if quote_text is not None:
+                    quote_text = quote_text.get_text('\n', strip=True)
+                    # Экранируем символы markdown
+                    for char in self.markdown_sanitize:
+                        quote_text = quote_text.replace(char, '\\' + char)
+
+                # Получаем дату публикации.
+                quote_date = quote.find(
+                    'div', attrs={'class': 'quote__header_date'})
+                if quote_date is not None:
+                    quote_date = quote_date.get_text(strip=True)
+
+                # Получаем рейтинг цитаты.
+                quote_raiting = quote.find(
+                    'div', attrs={'class': 'quote__total'})
+                if quote_raiting is not None:
+                    quote_raiting = quote_raiting.get_text(strip=True)
+
+                # Получаем комикс, если он есть.
+                quote_img = None
+                quote_img_el = quote.find(
+                    'img', attrs={'class': 'quote__strips_img'})
+                if quote_img_el is not None:
+                    quote_text = quote_text.replace(
+                        '\nКомикс по мотивам цитаты', '')
+                    quote_img = self.bashim_url + \
+                        quote_img_el['src'].replace('ts/', '')
+
+                # Возвращаем цитату со всей инфой.
                 result = {'id': quote_id,
                           'date': quote_date,
                           'raiting': quote_raiting,
